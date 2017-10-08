@@ -1,0 +1,114 @@
+/*
+Theme Name:     Storefront-child
+Theme URI:      
+Description:    Storefront child theme.
+Author:         Me
+Author URI:     
+Template:       storefront
+Version:        0.1.0
+*/
+
+@import 'variables.scss';
+@import 'archive-product/archive.scss';
+
+h1 {
+  margin-top: 10px;
+}
+
+p+h2 {
+  margin-top: 1em;
+}
+
+// Buttons
+.button {
+  border: 1px solid #000;
+}
+
+.woocommerce-page #content {
+
+}
+
+.woocommerce-page #secondary {
+  box-shadow: 5px 5px 15px #ccc;
+}
+
+.button.woof_reset_search_form {
+  border      : 0;
+  width       : 100%;
+  font-weight : 100;
+  float       : none;
+}
+
+// Sidebar
+#secondary {
+  margin-top       : 23px;
+  max-width        : 260px;
+  background-color : #FFF;
+
+  .widget { margin : 10px 0; }
+
+  .widget-title {
+    margin-bottom  : 0;
+    padding-bottom : 0;
+  }
+
+  .woof {
+    margin-top: 10px ;
+  }
+}
+
+// Main Menu
+.primary-navigation {
+  ul > li {
+    text-transform: uppercase;
+  }
+}
+
+.menu-item {
+  position: relative;
+}
+
+.current-menu-item a {
+  color       : #000 !important;
+  font-weight : bold;
+}
+
+@media screen and (min-width: 767px) {
+  .current-menu-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    border-top: 2px solid #555;
+    width: 70%;
+    left: 15%;
+    height: 20px;
+  }
+}
+
+#masthead {
+  margin-bottom : 0;
+  padding-top   : 15px;
+}
+
+#secondary {
+  border     : 1px solid #eee;
+  padding    : 10px;
+  box-shadow : 5px 5px 15px #ccc;
+
+  // Parent list items
+  .woof_list li:not(.woof_childs_list_li) {
+    
+  }
+
+  .woof_childs_list_li {
+  }
+
+  ul.woof_childs_list {
+    margin-left: 10px !important;
+    li {
+      // list-style-type: circle !important;
+    }
+  }
+}
+
+
