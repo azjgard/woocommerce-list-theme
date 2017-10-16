@@ -9,5 +9,4 @@ function storefront_parent_theme_enqueue_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'storefront_parent_theme_enqueue_styles' );
 
-
 include(get_stylesheet_directory() . '/woocommerce-display-attributes/woocommerce-display-attributes.php');
