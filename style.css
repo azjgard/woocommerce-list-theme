@@ -148,3 +148,6 @@ p + h2 {
   box-shadow: 5px 5px 15px #ccc; }
   #secondary ul.woof_childs_list {
     margin-left: 10px !important; }
+
+.custom-logo-link {
+  width: 230px; }
