@@ -16,21 +16,25 @@ $breadcrumbs      : '.woocommerce-breadcrumb';
 #{$product-container} {
   @import 'cart-form.scss';
 
+  width            : 100% !important;
+  margin-bottom    : 20px;
+  border           : 1px solid #eee;
+  background-color : #fff;
+
   padding-top    : $pc-padding-top;
   padding-right  : $pc-padding-right;
   padding-bottom : $pc-padding-bottom;
   padding-left   : $pc-padding-left;
 
-  height: 240px;
+  height: 220px;
 
-  @include screen-size(xs) {
-    height: auto;
+  @include screen-size(md) {
+    height : 230px;
   }
 
-  width            : 100% !important;
-  margin-bottom    : 20px;
-  border           : 1px solid #eee;
-  background-color : #fff;
+  @include screen-size(xs) {
+    height : auto;
+  }
 
   #{$product-image} {
     height : $thumbnail-height;

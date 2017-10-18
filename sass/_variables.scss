@@ -13,22 +13,22 @@ $atc-pft: 8px; // "space from thumbnail"
 // Product container
 $pc-padding-top    : 15px;
 $pc-padding-right  : 10px;
-$pc-padding-bottom : $atc-button_height + $atc-pft + 5;
+$pc-padding-bottom : $atc-button_height + $atc-pft;
 $pc-padding-left   : 15px;
 
 // Cart form
-$cart-form-top  : $thumbnail-height + $atc-pft + $pc-padding-top + 8px;
+$cart-form-top  : $thumbnail-height + $atc-pft + $pc-padding-top + 8;
 $cart-form-left : $pc-padding-left;
 
-$break-xs    : 505px;
-$break-small : 767px;
+$break-xs : 505px;
+$break-md : 767px;
 
 @mixin screen-size($media) {
   @if $media == xs {
     @media only screen and (max-width: $break-xs) { @content; }
   }
-  @else if $media == medium-screens {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  @else if $media == md {
+    @media only screen and (max-width: $break-md) { @content; }
   }
   @else if $media == wide-screens {
     @media only screen and (min-width: $break-large) { @content; }

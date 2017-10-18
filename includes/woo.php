@@ -61,14 +61,87 @@ remove_action( 'woocommerce_before_main_content','woocommerce_breadcrumb', 20, 0
 // ---------------------------------------------------------------------------------
 
 /**
- * Add an input box for product quantity for all WooCommerce products.
+ * Add select boxes for all products that have multiple quantities associated with them.
+ * Product quantity variations are represented by uploading products that have the same
+ * SKU as another product, but with a - and a quantity on the end.
+ *
+ * Example:
+ * Product 1 - SKU: 15232
+ * Product 1 x 50 - SKU: 15232-50
+ *
+ * Each product quantity needs to have separate pricing and also needs to have images, etc.
+ *
+ * ******************
+ * ***** README *****
+ * ******************
+ * The code below also relies on a JavaScript file to track when the user changes the select boxes.
+ * That JavaScript can be found in '/js/initializeForms.js', and it's included in the project
+ * in '/includes/enqueue.php'
  */
 
+// Accepts a product's SKU, queries the database for products that match
+// the following pattern: /{sku}-\d{1,}$/
+//
+// Returns the IDs of the products that were found, or false if none were found
+if (!function_exists('wcgp_get_quantity_options_by_sku')) {
+	function wcgp_get_quantity_options_by_sku($sku) {
+		global $wpdb;
+
+		$product_ids = $wpdb->get_results($wpdb->prepare(
+			"SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value LIKE '%s'", $sku.'-%'
+		));
+
+		if ($product_ids) {
+			return $product_ids;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+// Accepts a product's SKU, splits the string at -, and returns the number
+// that comes after it
+if (!function_exists('wcgp_get_product_quantity_by_sku')) {
+	function wcgp_get_product_quantity_by_sku( $sku ) {
+		return explode( '-', $sku )[1];
+	}
+}
+
+// Attaches to the WooCommerce filter that generates the HTML for the "Add to Cart" form
+// for each product on the archive page. This function adds a select box that allows
+// the user to select the quantity of product that they desire to add to their cart.
 function quantity_inputs_for_woocommerce_loop_add_to_cart_link( $html, $product ) {
 	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
-		$html = '<form action="' . esc_url( $product->add_to_cart_url() ) . '" class="cart-form" method="post" enctype="multipart/form-data">';
-		$html .= woocommerce_quantity_input( array(), $product, false );
-		$html .= '<button type="submit" class="add-to-cart button alt">' . esc_html( $product->add_to_cart_text() ) . '</button>';
+
+		$default_action = esc_url( $product->add_to_cart_url() );
+
+		$html = '<form action="' . $default_action . '" data-default="'.$default_action.'" class="cart-form" method="post" enctype="multipart/form-data">';
+
+		$product_sku = $product->get_sku();
+
+		$shop_url    = get_permalink(wc_get_page_id('shop'));
+		$product_ids = wcgp_get_quantity_options_by_sku($product_sku);
+
+		$add_to_cart_button_class = $product_ids ? '' : 'full-width';
+
+		if ($product_ids) {
+			$html .= '<select class="wcgp-select">';
+			$html .= '<option value selected>Select Qty/Pk</option>';
+
+			foreach ($product_ids as $product_object) {
+				$product_id    = $product_object->post_id;
+				$qty_product   = new WC_Product($product_id);
+				$product_qty   = wcgp_get_product_quantity_by_sku($qty_product->get_sku());
+				$product_price = $qty_product->get_price();
+				$product_variant_link = $shop_url . '?add-to-cart=' . $product_id;
+				$product_variant_text = $product_qty . ' - $' . money_format('%i', (int)$product_price);
+
+				$html .= '<option value="' . $product_variant_link . '">' . $product_variant_text . '</option>';
+			}
+			$html .= '</select>';
+		}
+		$html .= '<button type="submit" class="add-to-cart button alt ' . $add_to_cart_button_class . '">' . esc_html( $product->add_to_cart_text() ) . '</button>';
 		$html .= '</form>';
 	}
 	return $html;

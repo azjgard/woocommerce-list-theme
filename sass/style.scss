@@ -10,7 +10,13 @@ Version:        0.1.0
 
 @import 'variables.scss';
 @import 'archive-product/archive.scss';
+@import 'woocommerce-display-products.scss';
 
+body {
+  @include screen-size(md) {
+    margin-top : 50px;
+  }
+}
 h1 {
   margin-top: 10px;
 }
@@ -18,6 +24,7 @@ h1 {
 p+h2 {
   margin-top: 1em;
 }
+
 
 // Buttons
 .button {
@@ -90,29 +97,83 @@ p+h2 {
   padding-top   : 15px;
 }
 
+#primary {
+  @include screen-size(md) {
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    transition: opacity .5s;
+  }
+}
+
+#primary.lcgc-filter-visible {
+  opacity        : .3;
+  pointer-events : none;
+}
+
+#wpadminbar {
+  display        : none;
+  pointer-events : none;
+}
+
+@include screen-size(md) {
+  #secondary {
+    -webkit-transition: transform .5s;
+    -moz-transition: transform .5s;
+    transition: transform .5s;
+  }
+  #secondary:not(.visible) {
+    transform: translateY(-450px);
+  }
+}
+
 #secondary {
   border     : 1px solid #eee;
   padding    : 10px;
   box-shadow : 5px 5px 15px #ccc;
+  height     : 500px;
 
-  // Parent list items
-  .woof_list li:not(.woof_childs_list_li) {
-    
-  }
+  #lcgc-toggle-filter {
+    position         : absolute;
+    display          : none;
+    bottom           : 3px;
+    width            : 100%;
+    padding          : 10px;
+    text-align       : center;
+    left             : 0;
+    background-color : transparent;
+    border           : 0;
+    color            : #555;
+    cursor           : pointer;
 
-  .woof_childs_list_li {
-  }
-
-  ul.woof_childs_list {
-    margin-left: 10px !important;
-    li {
-      // list-style-type: circle !important;
+    @include screen-size(md) {
+      display     : block;
+      font-size   : 18px;
+      font-weight : 300;
+      line-height : 18px;
     }
+  }
+
+  @include screen-size(md) {
+    position       : fixed;
+    top            : 0;
+    left           : 0;
+    margin         : 0;
+    z-index        : 99999;
+    box-shadow     : none;
+    padding-bottom : 30px;
+    box-shadow     : 0 0 6px rgba(0,0,0,.5) !important;
+  }
+}
+
+ul.woof_childs_list {
+  margin-left: 10px !important;
+  li {
+    // list-style-type: circle !important;
   }
 }
 
 .custom-logo-link {
- width: 230px; 
+  width: 230px; 
 }
 
 

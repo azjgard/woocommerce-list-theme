@@ -3,10 +3,6 @@
 var gulp    = require('gulp');
 var sass    = require('gulp-sass');
 const shell = require('gulp-shell')
-
-gulp.task('refresh', shell.task([
-  'xdotool search --onlyvisible --class Chrome windowfocus key ctrl+r'
-]))
  
 gulp.task('sass', function () {
   return gulp.src('sass/style.scss')
