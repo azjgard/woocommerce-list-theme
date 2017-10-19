@@ -20,19 +20,4 @@ $pc-padding-left   : 15px;
 $cart-form-top  : $thumbnail-height + $atc-pft + $pc-padding-top + 8;
 $cart-form-left : $pc-padding-left;
 
-$break-xs : 505px;
-$break-md : 767px;
-
-@mixin screen-size($media) {
-  @if $media == xs {
-    @media only screen and (max-width: $break-xs) { @content; }
-  }
-  @else if $media == md {
-    @media only screen and (max-width: $break-md) { @content; }
-  }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
-  }
-}
-
 

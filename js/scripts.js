@@ -1,5 +1,9 @@
 var DEBUG = true;
 
+if (DEBUG) {
+    console.log('DEBUG IS ENABLED.');
+}
+
 function debug() {
     if (DEBUG) {
         for (var i = 0; i < arguments.length; i++) {
@@ -50,33 +54,49 @@ if (window.location.href.match(/shop/)) {
 (function($) {
     debug('Adding filter listener.');
 
-    var filterVisible = false;
+    var filter = { visible: false };
+    var nav    = { visible: false };
 
-    function toggleFilter() {
-        filterVisible = !filterVisible;
+    // TODO: change the name of the class being added to #primary to be filter agnostic
+    // TODO: make a transition mixin and add it to the primary nav menu
 
-        if (filterVisible) {
-            debug('Filter is now visible');
+    function toggleElement(selector, flag) {
+        flag.visible = !flag.visible;
 
-            $('#primary').addClass('lcgc-filter-visible');
-            $('#secondary').addClass('visible');
+        if (flag.visible) {
+            debug('Element is now visible');
 
-            // hide the filter when the window is resized
+            $('.site-branding').addClass('grayed-out');
+            $('#primary')      .addClass('grayed-out');
+
+            $(selector).addClass('visible');
+
+            // hide the element when the window is resized
             // with it open.
-            $(window).resize(toggleFilter);
+            $(window).resize(function() { toggleElement(selector, flag); });
         }
         else {
-            debug('Filter is now hidden.');
+            debug('Element is now hidden.');
 
-            $('#primary').removeClass('lcgc-filter-visible');
-            $('#secondary').removeClass('visible');
+            $('.site-branding').removeClass('grayed-out');
+            $('#primary')      .removeClass('grayed-out');
+
+            $(selector).removeClass('visible');
 
             // remove the resize listener when
-            // the filter is closed.
+            // the element is closed.
             $(window).off('resize');
         }
     }
 
-    $('#lcgc-toggle-filter').on('click', toggleFilter);
+    // Mobile product filter
+    $('#lcgc-toggle-filter').on('click', function() {
+        toggleElement('#secondary', filter)
+    });
+
+    // Mobile navigation menu
+    $('#lcgc-toggle-mobile-nav').on('click', function() {
+        toggleElement('.storefront-primary-navigation', nav)
+    });
 
 })(jQuery);

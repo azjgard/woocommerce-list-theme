@@ -171,3 +171,55 @@ function woocommerce_template_loop_product_title() {
 }
 
 // ---------------------------------------------------------------------------------
+
+/*
+ * Change the text for the menu toggle button
+ */
+
+if (!function_exists('lcgc_change_menu_toggle_text')) {
+	function lcgc_change_menu_toggle_text() {
+		return 'Navigation';
+	}
+	add_filter('storefront_menu_toggle_text', 'lcgc_change_menu_toggle_text');
+}
+
+// ---------------------------------------------------------------------------------
+
+/**
+ * Override the toggle navigation button on mobile devices
+ * so that we can get similar functionality to the product filter.
+ */
+
+if ( ! function_exists( 'storefront_primary_navigation' ) ) {
+	function storefront_primary_navigation() {
+		?>
+        <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
+
+
+            <button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
+
+
+
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location'	=> 'primary',
+					'container_class'	=> 'primary-navigation',
+				)
+			);
+
+			wp_nav_menu(
+				array(
+					'theme_location'	=> 'handheld',
+					'container_class'	=> 'handheld-navigation',
+				)
+			);
+			?>
+            <button id="lcgc-toggle-mobile-nav"><i class="fa fa-navicon"></i> Navigation</button>
+        </nav><!-- #site-navigation -->
+		<?php
+	}
+}
+
+
+

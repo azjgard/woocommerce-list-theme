@@ -142,18 +142,6 @@ p + h2 {
   font-weight: 100;
   float: none; }
 
-#secondary {
-  margin-top: 23px;
-  max-width: 260px;
-  background-color: #FFF; }
-  #secondary .widget {
-    margin: 10px 0; }
-  #secondary .widget-title {
-    margin-bottom: 0;
-    padding-bottom: 0; }
-  #secondary .woof {
-    margin-top: 10px; }
-
 .primary-navigation ul > li {
   text-transform: uppercase; }
 
@@ -180,31 +168,73 @@ p + h2 {
 
 @media only screen and (max-width: 767px) {
   #primary {
-    -webkit-transition: opacity .5s;
-    -moz-transition: opacity .5s;
-    transition: opacity .5s; } }
+    -webkit-transition: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    transition: opacity 0.5s; } }
 
-#primary.lcgc-filter-visible {
-  opacity: .3;
-  pointer-events: none; }
+.grayed-out {
+  pointer-events: none;
+  position: relative; }
 
-#wpadminbar {
-  display: none;
-  pointer-events: none; }
+.grayed-out::before {
+  position: fixed;
+  content: '';
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  animation: fadeIn-skdfs 1s forwards; }
+
+@keyframes fadeIn-skdfs {
+  from {
+    background-color: transparent; }
+  to {
+    background-color: rgba(0, 0, 0, 0.1); } }
+
+.site-header {
+  background-color: transparent; }
+
+@media only screen and (max-width: 767px) {
+  #wpadminbar {
+    display: none;
+    pointer-events: none; } }
 
 @media only screen and (max-width: 767px) {
   #secondary {
-    -webkit-transition: transform .5s;
-    -moz-transition: transform .5s;
-    transition: transform .5s; }
+    -webkit-transition: transform 0.6s;
+    -moz-transition: transform 0.6s;
+    transition: transform 0.6s; }
   #secondary:not(.visible) {
-    transform: translateY(-450px); } }
+    transform: translateY(-430px); } }
 
 #secondary {
-  border: 1px solid #eee;
-  padding: 10px;
+  background-color: #FFF;
   box-shadow: 5px 5px 15px #ccc;
-  height: 500px; }
+  border: 1px solid #eee;
+  margin-top: 23px;
+  padding: 10px;
+  max-width: 260px; }
+  @media only screen and (max-width: 767px) {
+    #secondary {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      z-index: 99999;
+      padding-bottom: 30px;
+      box-shadow: -3px 0 6px rgba(0, 0, 0, 0.5) !important;
+      height: 480px;
+      max-width: none;
+      width: 50%; } }
+  #secondary .widget {
+    margin: 10px 0; }
+  #secondary .widget-title {
+    margin-bottom: 0;
+    padding-bottom: 0; }
+  #secondary .woof {
+    margin-top: 10px; }
   #secondary #lcgc-toggle-filter {
     position: absolute;
     display: none;
@@ -223,19 +253,73 @@ p + h2 {
         font-size: 18px;
         font-weight: 300;
         line-height: 18px; } }
-  @media only screen and (max-width: 767px) {
-    #secondary {
-      position: fixed;
-      top: 0;
-      left: 0;
-      margin: 0;
-      z-index: 99999;
-      box-shadow: none;
-      padding-bottom: 30px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.5) !important; } }
-
-ul.woof_childs_list {
-  margin-left: 10px !important; }
 
 .custom-logo-link {
   width: 230px; }
+
+button.menu-toggle {
+  display: none; }
+
+@media only screen and (max-width: 767px) {
+  .storefront-primary-navigation:not(.visible) {
+    transform: translateY(-300px); } }
+
+.storefront-primary-navigation {
+  -webkit-transition: transform 0.5s;
+  -moz-transition: transform 0.5s;
+  transition: transform 0.5s; }
+  @media only screen and (max-width: 767px) {
+    .storefront-primary-navigation {
+      height: 350px;
+      position: fixed;
+      top: 0;
+      right: 0;
+      margin: 0;
+      z-index: 99999;
+      box-shadow: 3px 0 6px rgba(0, 0, 0, 0.5) !important;
+      max-width: none;
+      width: 50%;
+      border: 0;
+      padding: 0;
+      max-height: none;
+      background-color: #fff; }
+      .storefront-primary-navigation .handheld-navigation {
+        max-height: none;
+        text-align: center; } }
+  .storefront-primary-navigation #lcgc-toggle-mobile-nav {
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    font-family: "Source Sans Pro",HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    font-weight: 100;
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    display: none;
+    position: absolute;
+    bottom: 0; }
+    @media only screen and (max-width: 767px) {
+      .storefront-primary-navigation #lcgc-toggle-mobile-nav {
+        display: block; } }
+    .storefront-primary-navigation #lcgc-toggle-mobile-nav i {
+      margin-right: 5px; }
+
+button.menu-toggle::before,
+button.menu-toggle::after,
+button.menu-toggle span::before {
+  display: none; }
+
+button.menu-toggle span::before {
+  display: block;
+  background: none;
+  content: "\f00b";
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  bottom: 10px;
+  top: 13px;
+  left: 18px;
+  color: #555; }
+
+.toggled button.menu-toggle span:before {
+  opacity: 1; }
