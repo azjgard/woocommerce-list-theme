@@ -24,4 +24,3 @@ if (current_user_can('manage_options')) {
 //	add_action('wp_head', 'show_template');
 }
 
-

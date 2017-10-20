@@ -108,39 +108,71 @@ if (!function_exists('wcgp_get_product_quantity_by_sku')) {
 	}
 }
 
+if (!function_exists('generate_quantity_select_box')) {
+    function generate_quantity_select_box($product, $html, $return_cart_class) {
+	    $product_sku = $product->get_sku();
+
+	    $shop_url    = get_permalink(wc_get_page_id('shop'));
+	    $product_ids = wcgp_get_quantity_options_by_sku($product_sku);
+
+	    $add_to_cart_button_class = $product_ids ? '' : 'full-width';
+
+	    if ($product_ids) {
+		    $html .= '<select class="wcgp-select">';
+		    $html .= '<option value selected>Select Qty/Pk</option>';
+
+		    foreach ($product_ids as $product_object) {
+			    $product_id    = $product_object->post_id;
+			    $qty_product   = new WC_Product($product_id);
+			    $product_qty   = wcgp_get_product_quantity_by_sku($qty_product->get_sku());
+			    $product_price = $qty_product->get_price();
+			    $product_variant_link = $shop_url . '?add-to-cart=' . $product_id;
+			    $product_variant_text = $product_qty . ' - $' . money_format('%i', (int)$product_price);
+
+			    $html .= '<option value="' . $product_variant_link . '">' . $product_variant_text . '</option>';
+		    }
+		    $html .= '</select>';
+	    }
+
+	    if ($return_cart_class) {
+		    return array(
+			    'html' => $html,
+			    'add_to_cart_button_class' => $add_to_cart_button_class
+		    );
+        }
+        else {
+	        return $html;
+        }
+    }
+}
+
+function lcgc_echo_cart_form() {
+    global $product;
+    echo generate_quantity_select_box($product, '', false);
+}
+
+add_action('woocommerce_before_add_to_cart_quantity', 'lcgc_echo_cart_form');
+
+
+
+
 // Attaches to the WooCommerce filter that generates the HTML for the "Add to Cart" form
 // for each product on the archive page. This function adds a select box that allows
 // the user to select the quantity of product that they desire to add to their cart.
 function quantity_inputs_for_woocommerce_loop_add_to_cart_link( $html, $product ) {
 	if ( $product && $product->is_type( 'simple' ) && $product->is_purchasable() && $product->is_in_stock() && ! $product->is_sold_individually() ) {
 
-		$default_action = esc_url( $product->add_to_cart_url() );
+	    // the default action that will occur when the form
+        // is submitted
+		$default_action = esc_url($product->add_to_cart_url());
+
+		$form_quantity_info = generate_quantity_select_box($product, '', true);
+
+		$add_to_cart_button_class = $form_quantity_info['add_to_cart_button_class'];
+
 
 		$html = '<form action="' . $default_action . '" data-default="'.$default_action.'" class="cart-form" method="post" enctype="multipart/form-data">';
-
-		$product_sku = $product->get_sku();
-
-		$shop_url    = get_permalink(wc_get_page_id('shop'));
-		$product_ids = wcgp_get_quantity_options_by_sku($product_sku);
-
-		$add_to_cart_button_class = $product_ids ? '' : 'full-width';
-
-		if ($product_ids) {
-			$html .= '<select class="wcgp-select">';
-			$html .= '<option value selected>Select Qty/Pk</option>';
-
-			foreach ($product_ids as $product_object) {
-				$product_id    = $product_object->post_id;
-				$qty_product   = new WC_Product($product_id);
-				$product_qty   = wcgp_get_product_quantity_by_sku($qty_product->get_sku());
-				$product_price = $qty_product->get_price();
-				$product_variant_link = $shop_url . '?add-to-cart=' . $product_id;
-				$product_variant_text = $product_qty . ' - $' . money_format('%i', (int)$product_price);
-
-				$html .= '<option value="' . $product_variant_link . '">' . $product_variant_text . '</option>';
-			}
-			$html .= '</select>';
-		}
+		$html .= $form_quantity_info['html'];
 		$html .= '<button type="submit" class="add-to-cart button alt ' . $add_to_cart_button_class . '">' . esc_html( $product->add_to_cart_text() ) . '</button>';
 		$html .= '</form>';
 	}

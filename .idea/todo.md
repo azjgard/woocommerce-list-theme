@@ -18,29 +18,36 @@ product pages
 
 - Style individual product pages to fit
 look and feel of the rest of the site
+
 - Style the product filter sidebar to be consistent
 and not load styling via JavaScript after
 the page has loaded
+
 - Style product filter sidebar to be consistent with
 parent/child styling as shown on
 GCFerrules.com
+
 - Fix the FAQs page so that the dropdowns actually
 work (and maybe completely remove the dropdowns?)
+
 - Implement color scheme determined by graphic
 designer that RS uses for their logos
+
+- Optimize speed and load times
+
 - Pay for hosting, change DNS servers to point
 to hosting
+
 - Put site up in production
+
+
 - Link up actual payment gateway
+
 - Run production tests
 
 ## MAYBEs
 
 - Filter products via AJAX
-- Add fixed positioning for sidebar on products page
-    - If this happened, then we would need to keep
-    the sidebar in the same place until the user 
-    scrolled down past the fold; only at that
-    point would it move fixed
+- ~~Add fixed positioning for sidebar on products page~~
 - Add products to cart via AJAX
 - Add a form to the Contact Us page

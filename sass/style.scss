@@ -116,10 +116,10 @@ p+h2 {
 }
 
 #wpadminbar {
-  @include screen-size(md) {
+  //@include screen-size(md) {
     display        : none;
     pointer-events : none;
-  }
+  //}
 }
 
 @include screen-size(md) {
@@ -129,6 +129,11 @@ p+h2 {
   #secondary:not(.visible) {
     transform: translateY(-430px);
   }
+}
+
+#secondary.fixed-position {
+  position: fixed;
+  top: -5px;
 }
 
 #secondary {

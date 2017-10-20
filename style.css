@@ -196,10 +196,9 @@ p + h2 {
 .site-header {
   background-color: transparent; }
 
-@media only screen and (max-width: 767px) {
-  #wpadminbar {
-    display: none;
-    pointer-events: none; } }
+#wpadminbar {
+  display: none;
+  pointer-events: none; }
 
 @media only screen and (max-width: 767px) {
   #secondary {
@@ -208,6 +207,10 @@ p + h2 {
     transition: transform 0.6s; }
   #secondary:not(.visible) {
     transform: translateY(-430px); } }
+
+#secondary.fixed-position {
+  position: fixed;
+  top: -5px; }
 
 #secondary {
   background-color: #FFF;

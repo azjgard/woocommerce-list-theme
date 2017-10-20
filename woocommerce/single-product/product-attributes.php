@@ -2,7 +2,7 @@
 
 /**
  * OVERRIDE NOTES:
- * - Hide the product attributes that don't have values.
+ * - Hide the product attributes that are blank.
  *     - line 46
  *
  * Product attributes
