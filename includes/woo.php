@@ -153,9 +153,6 @@ function lcgc_echo_cart_form() {
 
 add_action('woocommerce_before_add_to_cart_quantity', 'lcgc_echo_cart_form');
 
-
-
-
 // Attaches to the WooCommerce filter that generates the HTML for the "Add to Cart" form
 // for each product on the archive page. This function adds a select box that allows
 // the user to select the quantity of product that they desire to add to their cart.
@@ -226,11 +223,7 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 	function storefront_primary_navigation() {
 		?>
         <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
-
-
             <button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
-
-
 
 			<?php
 			wp_nav_menu(
@@ -247,11 +240,11 @@ if ( ! function_exists( 'storefront_primary_navigation' ) ) {
 				)
 			);
 			?>
+            <!-- Add this button to toggle navigation on mobile devices -->
             <button id="lcgc-toggle-mobile-nav"><i class="fa fa-navicon"></i> Navigation</button>
-        </nav><!-- #site-navigation -->
+            <!-- Add this button to toggle navigation on mobile devices -->
+        </nav>
 		<?php
 	}
 }
-
-
 

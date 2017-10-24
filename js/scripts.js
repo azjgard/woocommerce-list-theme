@@ -136,8 +136,8 @@ function debug() {
  */
 
 (function($) {
-    // don't run on the product page
-    if (!window.location.href.includes('product')) {
+    // don't run on the product page or the cart page
+    if (window.location.href.includes('shop')) {
         var minWidth        = 767;
         var elementPosition = $('#secondary').offset();
 

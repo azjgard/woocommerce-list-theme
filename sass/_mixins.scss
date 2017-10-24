@@ -31,3 +31,8 @@ $break-md : 767px;
   -moz-transition: $type $time;
   transition: $type $time;
 }
+
+@mixin no-sidebar() {
+  #secondary { display: none; }
+  #primary   { width: 100%;   }
+}
