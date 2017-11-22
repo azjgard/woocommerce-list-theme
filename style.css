@@ -1,9 +1,9 @@
 /*
 Theme Name:     Storefront-child
-Theme URI:      
+Theme URI:
 Description:    Storefront child theme.
 Author:         Me
-Author URI:     
+Author URI:
 Template:       storefront
 Version:        0.1.0
 */
@@ -38,11 +38,17 @@ body:not(.product-template-default) .product.type-product.status-publish {
       font-size: 10px;
       border: 2px solid #eee;
       background-color: #fff;
-      color: #555; }
+      color: #555;
+      -webkit-transition: all 1s;
+      -moz-transition: all 1s;
+      transition: all 1s; }
       @media only screen and (max-width: 505px) {
         body:not(.product-template-default) .product.type-product.status-publish .cart-form .add-to-cart.button {
           width: 200px;
           padding: 8px; } }
+    body:not(.product-template-default) .product.type-product.status-publish .cart-form .add-to-cart.button.added {
+      background-color: #7287c4;
+      color: #fff; }
     body:not(.product-template-default) .product.type-product.status-publish .cart-form .add-to-cart.button.full-width {
       width: 200px; }
       @media only screen and (max-width: 767px) {
@@ -125,6 +131,27 @@ body:not(.product-template-default) .product.type-product.status-publish {
   #wcapf-category-filter-2 {
     overflow-y: auto;
     max-height: calc(100% - 95px); } }
+
+#wcapf-category-filter-2 ul {
+  background-color: #fff; }
+
+#wcapf-category-filter-2 > .wcapf-layered-nav > ul > li.chosen > ul {
+  margin-left: 0 !important;
+  padding: 0px; }
+  #wcapf-category-filter-2 > .wcapf-layered-nav > ul > li.chosen > ul > li > a {
+    border: 0;
+    font-weight: bold;
+    color: #7186C3;
+    font-size: 17px;
+    text-transform: uppercase; }
+    #wcapf-category-filter-2 > .wcapf-layered-nav > ul > li.chosen > ul > li > a::before {
+      display: none; }
+
+#wcapf-category-filter-2 > .wcapf-layered-nav > ul > li > ul > li > ul {
+  margin: 5px 8px 20px 8px !important;
+  border: 1px solid #ccc; }
+  #wcapf-category-filter-2 > .wcapf-layered-nav > ul > li > ul > li > ul > li > a {
+    border: 0 !important; }
 
 #wcapf-category-filter-2 li.not-selectable {
   opacity: .5;

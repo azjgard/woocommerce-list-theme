@@ -25,11 +25,18 @@
     border           : 2px solid #eee;
     background-color : #fff;
     color            : #555;
+    @include transition(all, 1s);
 
     @include screen-size(xs) {
       width   : 200px;
       padding : 8px;
     }
+  }
+
+
+  .add-to-cart.button.added {
+    background-color: #7287c4;
+    color: #fff;
   }
 
   .add-to-cart.button.full-width {

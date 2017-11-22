@@ -44,3 +44,30 @@ to hosting
 - ~~Add fixed positioning for sidebar on products page~~
 - Add products to cart via AJAX
 - Add a form to the Contact Us page
+
+$('.add-to-cart.button').on('click', function(e) {
+	// don't submit the form
+	e.preventDefault();
+
+	var action           = $(this).parent().attr('action')
+	var productContainer = $(this).parent().parent()
+	
+	// response from that page
+	$.get(action, function(res) {
+
+		// TODO: update the cart HTML with the cart HTML
+		// from the page.
+
+		// TODO: fade in and fade out a notification saying
+		// that the item has been added to the cart.
+
+		// TODO: change logic for product page vs product-archive
+		// page.
+
+		let html  = jQuery.parseHTML(res);
+		let notif = $(html).find('.woocommerce-message');
+
+
+		$(productContainer).append(notif);
+    });
+});

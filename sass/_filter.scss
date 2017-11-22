@@ -7,13 +7,56 @@
     max-height : calc(100% - 95px);
   }
 
+  // This is for specific list items (i.e. styles that vary
+  // depending on which child the element is)
+
+  ul {
+    background-color: #fff;
+  }
+
+  >.wcapf-layered-nav {
+
+      // the root level
+      >ul:not(.children) {
+        // background-color: red;
+      }
+
+      // the first layer list
+      >ul > li.chosen > ul {
+        margin-left: 0 !important;
+        padding: 0px;
+
+        >li > a {
+          border: 0;
+          font-weight: bold;
+          color: #7186C3;
+          font-size: 17px;
+          text-transform: uppercase;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+
+      // the second layer list
+      >ul > li > ul > li > ul {
+        margin: 5px 8px 20px 8px !important;
+        border: 1px solid #ccc;
+
+        >li > a {
+          border: 0 !important;
+        }
+      }
+  }
+
   // List items that will still be present,
   // but that cannot be selected because the filter
   // is mutually exclusive.
+  // This is for general list items.
   li.not-selectable {
     opacity        : .5;
     pointer-events : none;
-
     a { background-color : rgba(0,0,0,.08); }
   }
 
@@ -22,12 +65,12 @@
   }
 
   li {
-    // padding : 8px;
     margin  : 0 !important;
     width   : 100%;
 
-    // Hide the default checkboxes that come withe
-    // the plugin
+    // Hide the default checkboxes that come with
+    // the plugin because they're super ugly and
+    // I don't want to hack at the HTML
     &::before {
       display: none !important;
     }
@@ -54,6 +97,7 @@
       }
     }
 
+    // the link of the chosen list item
     &.chosen > a {
       &::before {
         background-image: url(https://openclipart.org/download/253846/1467299975.svg);
@@ -74,21 +118,21 @@
       >a {
 
       }
-    } 
+    }
   }
 }
 
-// remove underline from text elements 
+// remove underline from text elements
 .widget-area .widget a:not(.button) {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 #secondary .wcapf-layered-nav .children {
-  margin-top: 0 !important; 
+  margin-top: 0 !important;
 }
 
 #secondary .wcapf-layered-nav ul li {
-  margin: 0 !important; 
+  margin: 0 !important;
 }
 
 #secondary .wcapf-layered-nav ul li.chosen .children {
@@ -98,5 +142,5 @@
     .children {
     }
   }
-  margin-top: !important; 
+  margin-top: !important;
 }
