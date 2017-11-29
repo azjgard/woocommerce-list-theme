@@ -1,28 +1,27 @@
-## TODOs
-
-- ~~On mobile, change the product filter dropdown
-to use percentage-based widths instead of fixed
-pixel~~
-    
-- ~~On mobile, change the navigation to be a dropdown
-similar to the product filter (with fixed positioning)~~
-
-- ~~Add the product quantity select box to individual
-product pages~~
-
-- ~~Style individual product pages to fit
-look and feel of the rest of the site~~
-
-- ~~Style the product filter sidebar to be consistent
-and not load styling via JavaScript after
-the page has loaded~~
+## TODOs - Check 3
 
 - Style product filter sidebar to be consistent with
 parent/child styling as shown on
 GCFerrules.com
 
-- ~~Fix the FAQs page so that the dropdowns actually
-work (and maybe completely remove the dropdowns?)~~
+- BUG: the dumb search only searches for product names, and doesn't work for
+SKU numbers, attributes, etc.
+
+~~- BUG: The dropdown boxes on the product page currently truncate the price. For
+example, if the actual price is $104.63, the dropdown box will show
+$104.00.~~
+(I was parsing to int instead of to double, so it was truncating the decimal)
+
+~~- BUG: The product page shouldn't display products whose SKUs end with a - and
+a two digit number, since that's what the dropdown boxes rely upon to work.~~
+(Edited template file content-product.php and return if SKU matches pattern)
+
+
+//////
+
+
+- Move the external plugin into the child theme to remove external
+dependencies?
 
 - Implement color scheme determined by graphic
 designer that RS uses for their logos
@@ -40,9 +39,8 @@ to hosting
 
 ## MAYBEs
 
-- ~~Filter products via AJAX~~
-- ~~Add fixed positioning for sidebar on products page~~
-- Add products to cart via AJAX
+- Add products to cart via AJAX (NOTE: there is a snippet for this
+saved in Chrome Snippets)
 - Add a form to the Contact Us page
 
 $('.add-to-cart.button').on('click', function(e) {

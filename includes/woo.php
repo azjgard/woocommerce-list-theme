@@ -127,7 +127,7 @@ if (!function_exists('generate_quantity_select_box')) {
 			    $product_qty   = wcgp_get_product_quantity_by_sku($qty_product->get_sku());
 			    $product_price = $qty_product->get_price();
 			    $product_variant_link = $shop_url . '?add-to-cart=' . $product_id;
-			    $product_variant_text = $product_qty . ' - $' . money_format('%i', (int)$product_price);
+			    $product_variant_text = $product_qty . ' - $' . money_format('%i', (double)$product_price);
 
 			    $html .= '<option value="' . $product_variant_link . '">' . $product_variant_text . '</option>';
 		    }

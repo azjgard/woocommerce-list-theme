@@ -38,11 +38,11 @@ $breadcrumbs      : '.woocommerce-breadcrumb';
     height : auto;
   }
 
-  #{$product-image} {
-    height : $thumbnail-height;
-    width  : $thumbnail-width;
-    float  : left;
-    border-radius: 0;
+  #{$product-image}, .attachment-shop_catalog {
+    height        : $thumbnail-height;
+    width         : $thumbnail-width;
+    float         : left;
+    border-radius : 0;
 
     @include screen-size(xs) {
       float  : none;
