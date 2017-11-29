@@ -1,8 +1,6 @@
 ## TODOs - Check 3
 
-- Style product filter sidebar to be consistent with
-parent/child styling as shown on
-GCFerrules.com
+- Fix the sidebar to filter by attributes as shown on GCFerrules.com
 
 - BUG: the dumb search only searches for product names, and doesn't work for
 SKU numbers, attributes, etc.
@@ -16,6 +14,8 @@ $104.00.~~
 a two digit number, since that's what the dropdown boxes rely upon to work.~~
 (Edited template file content-product.php and return if SKU matches pattern)
 
+~~- BUG: The individual product pages shouldn't display the first image that is
+listed for the product~~
 
 //////
 
