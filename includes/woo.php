@@ -110,17 +110,26 @@ if (!function_exists('wcgp_get_product_quantity_by_sku')) {
 
 if (!function_exists('generate_quantity_select_box')) {
     function generate_quantity_select_box($product, $html, $return_cart_class) {
-	    $product_sku = $product->get_sku();
+	    $shop_url = get_permalink(wc_get_page_id('shop'));
 
-	    $shop_url    = get_permalink(wc_get_page_id('shop'));
+	    $product_sku = $product->get_sku();
+      $product_link = $shop_url.'?add-to-cart='.$product->get_id();
+      $product_formatted_price = money_format('%i', (double)$product->get_price());
+
 	    $product_ids = wcgp_get_quantity_options_by_sku($product_sku);
 
 	    $add_to_cart_button_class = $product_ids ? '' : 'full-width';
 
 	    if ($product_ids) {
 		    $html .= '<select class="wcgp-select">';
+
+        // Do we need this as a default? Maybe... so it's indicative that
+        // the user needs to select a pack versus just automatically adding
+        // one to their cart.
 		    $html .= '<option value selected>Select Qty/Pk</option>';
 
+        $html .= '<option value="' . $product_link . '">10 - $' . $product_formatted_price . '</option>';
+        
 		    foreach ($product_ids as $product_object) {
 			    $product_id    = $product_object->post_id;
 			    $qty_product   = new WC_Product($product_id);

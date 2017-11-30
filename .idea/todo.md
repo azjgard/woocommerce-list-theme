@@ -5,6 +5,10 @@
 - BUG: the dumb search only searches for product names, and doesn't work for
 SKU numbers, attributes, etc.
 
+~~- Instead of showing the price as regular text, in addition to a select
+box that drops down, the price should be hidden and the default select box
+option should simply be an option of ONE.~~
+
 ~~- BUG: The dropdown boxes on the product page currently truncate the price. For
 example, if the actual price is $104.63, the dropdown box will show
 $104.00.~~
@@ -16,6 +20,11 @@ a two digit number, since that's what the dropdown boxes rely upon to work.~~
 
 ~~- BUG: The individual product pages shouldn't display the first image that is
 listed for the product~~
+
+~~- Bullet proof the product import system and add images to the store~~
+
+- Add products to cart via AJAX (NOTE: there is a snippet for this
+saved in Chrome Snippets)
 
 //////
 
@@ -39,8 +48,6 @@ to hosting
 
 ## MAYBEs
 
-- Add products to cart via AJAX (NOTE: there is a snippet for this
-saved in Chrome Snippets)
 - Add a form to the Contact Us page
 
 $('.add-to-cart.button').on('click', function(e) {
