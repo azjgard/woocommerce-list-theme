@@ -16,6 +16,10 @@ body.single-product {
     padding-top: 5px;
   }
 
+  .summary .price {
+    display : none;
+  }
+
   form.cart {
     .wcgp-select {
       display: block;

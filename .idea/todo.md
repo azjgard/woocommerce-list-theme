@@ -1,9 +1,24 @@
 ## TODOs - Check 3
 
-- Fix the sidebar to filter by attributes as shown on GCFerrules.com
+- Implement sidebar front-end to request the filterable product page
+via AJAX.
+
+- BUG: make the tables wider so that the values of the product attributes
+are never wrapped (screwing up the rest of the product div)
 
 - BUG: the dumb search only searches for product names, and doesn't work for
 SKU numbers, attributes, etc.
+
+- Figure out what to do for caching and versioning file names before
+uploading to the server.
+
+- Add products to cart via AJAX (NOTE: there is a snippet for this
+saved in Chrome Snippets)
+
+- Add JavaScript to prevent adding to cart if the customer has not yet
+selected a quantity.
+
+- Add quantity box to product archive page
 
 ~~- Instead of showing the price as regular text, in addition to a select
 box that drops down, the price should be hidden and the default select box
@@ -23,8 +38,6 @@ listed for the product~~
 
 ~~- Bullet proof the product import system and add images to the store~~
 
-- Add products to cart via AJAX (NOTE: there is a snippet for this
-saved in Chrome Snippets)
 
 //////
 

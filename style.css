@@ -217,6 +217,9 @@ body.single-product .woocommerce-product-gallery {
 body.single-product .woocommerce-tabs {
   padding-top: 5px; }
 
+body.single-product .summary .price {
+  display: none; }
+
 body.single-product form.cart .wcgp-select {
   display: block;
   padding: 10px;
