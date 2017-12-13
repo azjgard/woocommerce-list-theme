@@ -151,3 +151,124 @@ function debug() {
         });
     }
 })(jQuery);
+
+// ---------------------------------------------------------------------------------
+
+/**
+ * Handle the product filter sidebar.
+ */
+
+(function($) {
+  // TODO: implement loader class
+  var loaderVisibilityClass   = '';
+  var minimumTransitionDelay  = 400;
+  var productsVisibilityClass = 'invisible';
+
+  var selectBox       = $('#lcgc-attribute-filter');
+  var checkboxes      = $('#secondary .attributes input[type="checkbox"]');
+  var requestLocation = window.location.href.split('shop')[0] + 
+                        'product-filter';
+
+  // TODO: implement loader reference
+  var loader       = $('');
+  var products     = $('ul.products');
+  var originalHTML = null;
+
+  // Checkbox event handlers
+  $(checkboxes).on('change', function(e) {
+    var checked        = this.checked;
+    var categoryName   = $(this).parent().parent().siblings('h4').attr('name');
+    console.log(categoryName);
+    var attributeName  = this.name;
+    var attributeValue = $( $(this).siblings()[0] ).text();
+    var attrString    = '';
+
+    if (checked) {
+      // uncheck all the other boxes
+      $(this).closest('.subcategory').find('input').prop("checked", false);
+      // check this one
+      $(this).prop("checked", true);
+    }
+    else {
+      // uncheck this one
+      $(this).prop("checked", false);
+    }
+
+    $.each($(checkboxes), function() {
+      var currentAttributeName  = this.name;
+      var currentAttributeValue = $( $(this).siblings()[0] ).text();
+
+      if (this.checked) {
+        attrString += currentAttributeName + ':' + currentAttributeValue + ';';
+      }
+    });
+
+    var newURL = requestLocation + '?category=' + categoryName + '&attribute=' + attrString;
+
+    console.log(newURL);
+    replaceProducts(newURL);
+  });
+
+  // Select box Event Handler
+  $(selectBox).on('change', function(e) {
+    var options      = this.options;
+    var index        = e.target.selectedIndex;
+    var categoryName = options[index].value;
+    var fullReqURL   = requestLocation + '?category=' + categoryName;
+
+    if (categoryName === 'choose' && originalHTML !== null) {
+      showSidebarElements();
+      replaceProducts();
+    }
+    else if (categoryName !== 'choose') {
+      if (originalHTML === null)
+        originalHTML = $(products).html();
+
+      showSidebarElements(categoryName);
+      replaceProducts(fullReqURL);
+    }
+  })
+
+  function toggleClass(element, className) {
+    return $(element).hasClass(className) ?
+      $(element).removeClass(className)   :
+      $(element).addClass(className);
+  }
+  function toggleProductVisibility(productsVisibilityClass) { $(products).toggleClass(productsVisibilityClass); }
+  function toggleLoaderVisibility(loaderVisibilityClass)    { $(loader).toggleClass(loaderVisibilityClass);     }
+  function setProductsHTML(html) {
+    $(products).html(html);
+  }
+
+  function showSidebarElements(categoryName) {
+    $('#secondary .attributes > div').fadeOut();
+
+    if (categoryName) {
+      var selector = '#secondary .' + categoryName + '-attribute-filter';
+      setTimeout(function() { $(selector).fadeIn(); }, 500);
+    }
+  }
+
+  function replaceProducts(requestURL) {
+    toggleLoaderVisibility(loaderVisibilityClass);
+    toggleProductVisibility(productsVisibilityClass);
+
+    setTimeout(function() {
+      if (requestURL) {
+        $.get(requestURL, function(response) {
+          var obj     = $.parseHTML(response);
+          var newHTML = $(obj).find('ul.products').html();
+
+          setProductsHTML(newHTML);
+          toggleProductVisibility(productsVisibilityClass);
+          toggleLoaderVisibility(loaderVisibilityClass);
+        });
+      }
+      else {
+        setProductsHTML(originalHTML);
+        toggleProductVisibility(productsVisibilityClass);
+        toggleLoaderVisibility(loaderVisibilityClass);
+      }
+    }, minimumTransitionDelay);
+  }
+})(jQuery);

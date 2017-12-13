@@ -1,5 +1,41 @@
 ## TODOs - Check 3
 
+# STOPPED IN ALTERNATIVESTORETEMPLATE.PHP
+
+** WAIT ON DETAILS FROM STEVEN **
+--------------------------------------
+
+    For people ordering in USA:
+      - Shipping system conditional on price, no conditions at all on location
+      - Create option to allow for 2-day shipping
+
+    - Abilty to ship with a shipping company account
+
+    For people ordering out of USA:
+      - Only options are to ship with account or ship with GCFerrule's FedEx
+      account
+
+--------------------------------------
+** WAIT ON DETAILS FROM STEVEN **
+
+- Get hosting information and send to steven to set up
+
+- Generate invoice for last check
+
+- Ensure promo code system is set up
+
+- Use commas to separate Similar to field instead of |
+
+- For the quantity packs, only look for SKUs that end in:
+  - 5
+  - 25
+  - 50
+  - 100
+(nothing else will come afterwards)
+
+- Absolute positioning and no max-height on the sidebar when on desktops.
+Leave fixed positioning with max-height on mobile.
+
 - Implement sidebar front-end to request the filterable product page
 via AJAX.
 
@@ -38,15 +74,7 @@ listed for the product~~
 
 ~~- Bullet proof the product import system and add images to the store~~
 
-
 //////
-
-
-- Move the external plugin into the child theme to remove external
-dependencies?
-
-- Implement color scheme determined by graphic
-designer that RS uses for their logos
 
 - Optimize speed and load times
 
