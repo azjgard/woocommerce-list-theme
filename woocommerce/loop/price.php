@@ -100,11 +100,17 @@ if (!function_exists('echoProdAttr')) {
       </td>
       <td>
         <span class="attribute-value">
-          <?php echo $value; ?>
+          <?php echo barsToCommas($value); ?>
         </span>
       </td>
     </tr> <?php
   }
+}
+
+if (!function_exists('barsToCommas')) {
+  function barsToCommas($str) {
+    return str_replace('|', ',', $str);
+  } 
 }
 
 global $product; ?>

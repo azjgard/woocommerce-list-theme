@@ -132,25 +132,26 @@ function debug() {
 // ---------------------------------------------------------------------------------
 
 /**
+ * -- DEPRECATED --
  * Set the sidebar to fixed position once scrolled to certain position.
- */
+ *
+  (function($) {
+      // don't run on the product page or the cart page
+      if (window.location.href.includes('shop')) {
+          var minWidth        = 767;
+          var elementPosition = $('#secondary').offset();
 
-(function($) {
-    // don't run on the product page or the cart page
-    if (window.location.href.includes('shop')) {
-        var minWidth        = 767;
-        var elementPosition = $('#secondary').offset();
-
-        $(window).scroll(function() {
-            if($(window).scrollTop() > elementPosition.top - 20 && $(window).width() > minWidth) {
-                $('#secondary').addClass('fixed-position');
-            }
-            else {
-                $('#secondary').removeClass('fixed-position');
-            }
-        });
-    }
-})(jQuery);
+          $(window).scroll(function() {
+              if($(window).scrollTop() > elementPosition.top - 20 && $(window).width() > minWidth) {
+                  $('#secondary').addClass('fixed-position');
+              }
+              else {
+                  $('#secondary').removeClass('fixed-position');
+              }
+          });
+      }
+  })(jQuery);
+*/
 
 // ---------------------------------------------------------------------------------
 

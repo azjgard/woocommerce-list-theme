@@ -87,16 +87,15 @@ if (!function_exists('wcgp_get_quantity_options_by_sku')) {
 	function wcgp_get_quantity_options_by_sku($sku) {
 		global $wpdb;
 
-		$product_ids = $wpdb->get_results($wpdb->prepare(
-			"SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value LIKE '%s'", $sku.'-%'
-		));
+    $product_ids = $wpdb->get_results(
+      $wpdb->prepare(
+        "SELECT post_id FROM $wpdb->postmeta WHERE meta_key='_sku' AND meta_value LIKE '%s'",
+        $sku.'-%'
+      )
+    );
 
-		if ($product_ids) {
-			return $product_ids;
-		}
-		else {
-			return false;
-		}
+		if ($product_ids) { return $product_ids; }
+		else              { return false;        }
 	}
 }
 

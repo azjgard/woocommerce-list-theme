@@ -49,13 +49,6 @@ ul.products {
 }
 
 #secondary {
-  min-height   : 320px;
-  max-height   : 500px;
-  overflow-y   : auto;
-  padding      : 10px;
-  width        : 25%;
-  margin-left  : -20px;
-  margin-right : 0;
 
 
   .category-filter {
@@ -214,6 +207,13 @@ p+h2 {
 }
 
 #secondary {
+  min-height   : 320px;
+  overflow-y   : auto;
+  padding      : 10px;
+  width        : 25%;
+  margin-left  : -20px;
+  margin-right : 0;
+
   background-color : #FFF;
   box-shadow       : 5px 5px 15px #ccc;
   border           : 1px solid #eee;

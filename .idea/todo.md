@@ -20,8 +20,6 @@
 
 - Ensure promo code system is set up
 
-- Use commas to separate Similar to field instead of |
-
 - For the quantity packs, only look for SKUs that end in:
   - 5
   - 25
@@ -29,11 +27,21 @@
   - 100
 (nothing else will come afterwards)
 
+
+---- **DONE** -----
+- Use commas to separate Similar to field instead of |
+---- **DONE** -----
+
+
+---- **DONE** -----
 - Absolute positioning and no max-height on the sidebar when on desktops.
 Leave fixed positioning with max-height on mobile.
+---- **DONE** -----
+
 
 - Implement sidebar front-end to request the filterable product page
 via AJAX.
+
 
 - BUG: make the tables wider so that the values of the product attributes
 are never wrapped (screwing up the rest of the product div)

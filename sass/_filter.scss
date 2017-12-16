@@ -1,6 +1,18 @@
 @import 'variables';
 @import 'mixins';
 
+
+// For small screen sizes, hide the product filter
+// when the sidebar isn't visible. Otherwise, it blocks
+// the 'Product Filter' button.
+#secondary:not(.visible) {
+  @include screen-size(md) {
+    .category-filter {
+      display: none;
+    }
+  }
+}
+
 #wcapf-category-filter-2 {
   @include screen-size(md) {
     overflow-y : auto;
