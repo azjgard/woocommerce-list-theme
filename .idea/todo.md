@@ -18,10 +18,6 @@
 --------------------------------------
 ** WAIT ON DETAILS FROM STEVEN **
 
-- Get hosting information and send to steven to set up
-
-- Generate invoice for last check
-
 - Ensure promo code system is set up
 
 - Use commas to separate Similar to field instead of |
@@ -56,26 +52,6 @@ selected a quantity.
 
 - Add quantity box to product archive page
 
-~~- Instead of showing the price as regular text, in addition to a select
-box that drops down, the price should be hidden and the default select box
-option should simply be an option of ONE.~~
-
-~~- BUG: The dropdown boxes on the product page currently truncate the price. For
-example, if the actual price is $104.63, the dropdown box will show
-$104.00.~~
-(I was parsing to int instead of to double, so it was truncating the decimal)
-
-~~- BUG: The product page shouldn't display products whose SKUs end with a - and
-a two digit number, since that's what the dropdown boxes rely upon to work.~~
-(Edited template file content-product.php and return if SKU matches pattern)
-
-~~- BUG: The individual product pages shouldn't display the first image that is
-listed for the product~~
-
-~~- Bullet proof the product import system and add images to the store~~
-
-//////
-
 - Optimize speed and load times
 
 - Pay for hosting, change DNS servers to point
@@ -90,30 +66,3 @@ to hosting
 ## MAYBEs
 
 - Add a form to the Contact Us page
-
-$('.add-to-cart.button').on('click', function(e) {
-	// don't submit the form
-	e.preventDefault();
-
-	var action           = $(this).parent().attr('action')
-	var productContainer = $(this).parent().parent()
-	
-	// response from that page
-	$.get(action, function(res) {
-
-		// TODO: update the cart HTML with the cart HTML
-		// from the page.
-
-		// TODO: fade in and fade out a notification saying
-		// that the item has been added to the cart.
-
-		// TODO: change logic for product page vs product-archive
-		// page.
-
-		let html  = jQuery.parseHTML(res);
-		let notif = $(html).find('.woocommerce-message');
-
-
-		$(productContainer).append(notif);
-    });
-});
